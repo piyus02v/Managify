@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "272579670489",
+    "project_id": "managify-6c9df",
+    "storage_bucket": "managify-6c9df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272579670489:android:e6f1503719f817d707a9c8",
+        "android_client_info": {
+          "package_name": "com.example.managify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272579670489-p92g9s9eu6ulm63j3olboju36nuh7r5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2B9Ia-z5XkAiUbC5VBwoJDSsyd_4Jgc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272579670489-p92g9s9eu6ulm63j3olboju36nuh7r5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
