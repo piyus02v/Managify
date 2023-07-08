@@ -28,111 +28,18 @@ import com.example.managify.firebase.FirestoreHandler
 import com.example.managify.models.Board
 import com.example.managify.models.User
 import com.example.managify.utils.Constants
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
+import com.google.firebase.messaging.FirebaseMessaging
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-//    companion object{
-//        const val MY_PROFILE_REQUEST_CODE : Int = 11
-//        const val CREATE_BOARD_REQUEST_CODE : Int = 21
-//    }
-//
-//    private lateinit var mUserName : String
-//    private lateinit var mSharedPreferences: SharedPreferences
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        setActionBar()
-//        findViewById<NavigationView>(R.id.navigator_view).setNavigationItemSelectedListener(this)
-//
-//        findViewById<FloatingActionButton>(R.id.create_board_fab).setOnClickListener {
-//            val intent = Intent(this,CreateBoardActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//    }
-//    private fun setActionBar(){
-//        val toolbar_main_activity=findViewById<Toolbar>(R.id.toolbar_main_activity)
-//        toolbar_main_activity.setNavigationIcon(R.drawable.ic_navigation_manu)
-//        toolbar_main_activity.setNavigationOnClickListener{
-//            toggleDrawer()
-//        }
-//    }
-//    private fun toggleDrawer(){
-//
-//        if(findViewById<DrawerLayout>(R.id.drawer_layout).isDrawerOpen(GravityCompat.START)){
-//            findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
-//        }else{
-//            findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.START)
-//        }
-//    }
-//    override fun onBackPressed() {
-//        if(findViewById<DrawerLayout>(R.id.drawer_layout).isDrawerOpen(GravityCompat.START)){
-//            findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
-//        }else{
-//            doubleBackToExit()
-//        }
-//    }
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
-//            R.id.nav_my_profile -> {
-//                startActivityForResult(Intent(this, MyProfileActivity::class.java), MY_PROFILE_REQUEST_CODE)
-//            }
-//            R.id.nav_sign_out -> {
-//                FirebaseAuth.getInstance().signOut()
-//                mSharedPreferences.edit().clear().apply() //reset the shared prefs - make sure that shared preferences not stored
-//                val intent = Intent(this, introactivity::class.java)
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                startActivity(intent)
-//                finish()
-//            }
-//        }
-//        findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
-//        return true
-//    }
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if(resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
-//            FirestoreHandler().loadUserData(this)
-//        } else{
-//            Log.e("MainOnActivityResult", "Cancelled")
-//        }
-//    }
-//
-//
-//
-//    fun updateNavigationUserDetails(user : User){
-//        hideProgressDialog()
-//        mUserName = user.name
-//        Toast.makeText(this,"navigation update called",Toast.LENGTH_SHORT).show()
-//
-//
-//        // add image
-//        Glide.with(this)
-//            .load(user.image)
-//            .fitCenter()
-//            .placeholder(R.drawable.ic_user_place_holder)
-//            .into(findViewById<CircleImageView>(R.id.nav_user_image))
-//        findViewById<TextView>(R.id.user_name_tv).text=user.name
-//
-//
-//
-//    }
-//    fun tokenUpdateSuccess(){
-//        hideProgressDialog()
-//        val editor : SharedPreferences.Editor = mSharedPreferences.edit()
-//        editor.putBoolean(Constants.FCM_TOKEN_UPDATED, true)
-//        editor.apply()
-//        showProgressDialog()
-//        FirestoreHandler().loadUserData(this,true)
-//    }
-//
-//}
+
 
     companion object{
         const val MY_PROFILE_REQUEST_CODE : Int = 11
@@ -154,12 +61,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED,false)
         if(tokenUpdated){
             showProgressDialog()
+
             FirestoreHandler().loadUserData(this,true)
         }else{
-//            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this@MainActivity){
-//                    instanceResult ->
-//                updateFcmToken(instanceResult.token)
-//            }
+
+
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new FCM registration token
+                val token = task.result
+
+
+                updateFcmToken(token)
+                //Toast.makeText(this,"token updated",Toast.LENGTH_SHORT).show()
+            })
+
+
         }
 
         FirestoreHandler().loadUserData(this, true)

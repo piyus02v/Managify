@@ -124,7 +124,7 @@ class MembersActivity : BaseActivity() {
         mAssignedMembersList.add(user)
         anyChangesMade = true
         setUpMembersList(mAssignedMembersList)
-        SendNotificationToUserAsyncTask(mBoardDetails.name,user.fcmToken)
+        SendNotificationToUserAsyncTask(mBoardDetails.name,user.fcmToken).execute()
     }
 
     private inner class SendNotificationToUserAsyncTask(val boardName : String, val token : String): AsyncTask<Any, Void, String>(){
