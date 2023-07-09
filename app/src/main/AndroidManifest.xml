@@ -7,10 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,21 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Managify"
         tools:targetApi="31">
+
+        <activity
+            android:name=".activities.DrawingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.TaskListActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".activities.MembersActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".activities.CardDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".activities.CreateBoardActivity"
             android:exported="false"
@@ -50,17 +51,17 @@
         <activity
             android:name=".activities.BaseActivity"
             android:exported="false"
-            android:theme="@style/Theme.Managify.NoActionBar"/>
+            android:theme="@style/Theme.Managify.NoActionBar" />
         <activity
             android:name=".activities.SignInActivity"
             android:exported="false"
             android:parentActivityName=".activities.introactivity"
-            android:theme="@style/Theme.Managify.NoActionBar"/>
+            android:theme="@style/Theme.Managify.NoActionBar" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
             android:parentActivityName=".activities.introactivity"
-            android:theme="@style/Theme.Managify.NoActionBar"/>
+            android:theme="@style/Theme.Managify.NoActionBar" />
         <activity
             android:name=".activities.introactivity"
             android:exported="false"
@@ -83,7 +84,6 @@
             </intent-filter>
         </activity>
 
-
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="false">
@@ -91,23 +91,23 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/managifylogo" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/allcolor" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="managify_notification_channel_id" />
-
-
     </application>
 
 </manifest>

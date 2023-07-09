@@ -132,6 +132,23 @@
                     android:textColor="@color/primary_text_color" />
 
                 <Button
+                    android:id="@+id/drawing_open"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/shape_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Draw"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Button
                     android:id="@+id/update_card_details_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -3,6 +3,7 @@ package com.example.managify.activities
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.icu.text.SimpleDateFormat
@@ -26,6 +27,7 @@ import com.example.managify.dialogs.MembersListDialog
 import com.example.managify.firebase.FirestoreHandler
 import com.example.managify.models.*
 import com.example.managify.utils.Constants
+import kotlinx.android.synthetic.main.activity_card_details.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -59,6 +61,9 @@ class CardDetailsActivity : BaseActivity() {
             } else {
                 Toast.makeText(this, "Please enter a card name", Toast.LENGTH_SHORT).show()
             }
+        }
+        drawing_open.setOnClickListener{
+            startActivity(Intent(this,DrawingActivity::class.java))
         }
 
         findViewById<TextView>(R.id.select_label_color_tv).setOnClickListener {

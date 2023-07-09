@@ -12,4 +12,13 @@
     <color name="secondary_text_color">#7A8089</color>
     <color name="task_list_action_color">#F7F6FA</color>
     <color name="divider_color">#E1D6D6</color>
+
+    <color name="tan">#ffcc99</color>
+
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#0000ff</color>
+    <color name="yellow">#ffff00 </color>
+    <color name="teal">#35a79c</color>
+    <color name="purple">#a349b1</color>
 </resources>
