@@ -22,4 +22,10 @@ Proje Manag Uses Firebase Firestore Database - Google’s Firestore Firebase Dat
 * Create handwritten files or graphics on an independent window for a task.
 * Edit already existing images or documents in the device via draw feature.
 * Save the updated images directly on your device.
-* 
+## Technologies used
+* Firebase-firestore
+* Firebase cloud messaging(FCM)
+* Glide api
+* Dexter api
+* Coroutines
+
