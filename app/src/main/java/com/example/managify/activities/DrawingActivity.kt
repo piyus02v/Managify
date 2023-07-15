@@ -39,12 +39,7 @@ class DrawingActivity : AppCompatActivity() {
         if(drawing_view!=null)
         drawing_view.setSizeForBrush(20.toFloat()) // Setting the default brush size to drawing view.
 
-        /**
-         * This is to select the default Image button which is
-         * active and color is already defined in the drawing view class.
-         * As the default color is black so in our color pallet it is on 2 position.
-         * But the array list start position is 0 so the black color is at position 1.
-         */
+
         mImageButtonCurrentPaint = black_imgbtn
         if(mImageButtonCurrentPaint!=null)
         mImageButtonCurrentPaint!!.setImageDrawable(
